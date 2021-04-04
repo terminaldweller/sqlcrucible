@@ -1,6 +1,6 @@
 drop table if exists employee cascade;
 drop table if exists branch cascade;
-drop table if exists client;
+drop table if exists client cascade;
 drop table if exists works_with;
 drop table if exists branch_supplier;
 
@@ -94,3 +94,15 @@ insert into  branch_supplier values(2, 'j.t. forms and labels', 'custom forms');
 insert into  branch_supplier values(3, 'uni-ball', 'writing utensils');
 insert into  branch_supplier values(3, 'hammer mill', 'paper');
 insert into  branch_supplier values(2, 'stamford labels', 'custom forms');
+
+insert into branch values(4, 'buffalo', null,null);
+
+create table trigger_test (
+  message varchar(100)
+)
+
+create function check_employee_update(x text) returns text as $$
+
+$$
+
+create trigger my_trigger before insert on employee for each row execute function check_employee_update();
